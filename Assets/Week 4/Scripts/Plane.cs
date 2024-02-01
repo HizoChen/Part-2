@@ -25,7 +25,8 @@ public class Plane : MonoBehaviour
         spriteRenderer.sprite = sprites[Random.Range(1,4)]; 
       lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
-        lineRenderer.SetPosition(0,transform.position);
+        lineRenderer.SetPosition(0,transform.position + new Vector3(Random.Range(-5f,5f),0));
+        GetComponent<Transform>().rotation = Quaternion.Euler(0f,0f,Random.Range(0,360));
         rigidbody = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
