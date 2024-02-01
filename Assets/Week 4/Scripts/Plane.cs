@@ -105,6 +105,9 @@ public class Plane : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         spriteRenderer.color = Color.red;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    { 
         distanceapart = 1.2f;
         distance = Vector3.Distance(transform.position, collision.gameObject.transform.position);
         if (distanceapart >= distance)
