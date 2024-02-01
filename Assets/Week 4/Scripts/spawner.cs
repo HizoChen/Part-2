@@ -22,8 +22,9 @@ public class spawner : MonoBehaviour
         timer= timer + Time.deltaTime;
      if(timer > targettime)
         {
-            Instantiate(prefabs, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.Euler(0f, 0f, Random.Range(0, 360f)));
+            Instantiate(prefabs);
             timer= 0;
+            targettime = Random.Range(1,5);
         }
         else
         {
