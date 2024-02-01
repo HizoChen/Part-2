@@ -62,6 +62,13 @@ public class Plane : MonoBehaviour
             }
         }
     }
+    private void OnMouseDown()
+    {
+        points = new List<Vector2>();
+        lineRenderer.positionCount = 1;
+        lineRenderer.SetPosition(0, transform.position);
+    }
+
     private void OnMouseDrag() 
     {
      Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
