@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Plane : MonoBehaviour
 {
@@ -21,13 +22,13 @@ public class Plane : MonoBehaviour
     public Color mycolor;
     float distanceapart;
     float distance;
-    Collider2D other;
-
-
+    public bool inlanding;
+    
 
 
     private void Start()
     {
+        bool inlanding = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[Random.Range(1,4)]; 
       lineRenderer = GetComponent<LineRenderer>();
@@ -54,15 +55,16 @@ public class Plane : MonoBehaviour
     {
         
     
-        if(Input.GetKey(KeyCode.Space))
+        if(inlanding)
         {
             landingTimer += 0.5f * Time.deltaTime;
             float interpolation =landing.Evaluate(landingTimer);
             if ((transform.localScale.z < 0.1f))
             {
                 Destroy(gameObject);
+                
             }
-            transform . localScale = Vector3.Lerp(Vector3.one,Vector3.zero,interpolation);
+            transform . localScale = Vector3.Lerp(Vector3.one*5.72f, Vector3.zero,interpolation);
         }
         lineRenderer.SetPosition(0, transform.position);
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
