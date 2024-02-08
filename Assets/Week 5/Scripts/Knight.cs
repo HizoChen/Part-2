@@ -46,6 +46,11 @@ public class Knight : MonoBehaviour
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
        animator.SetFloat("Movement",movement.magnitude);
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("right click");
+            animator.SetTrigger("Attack");
+        }
     }
     private void OnMouseDown()
     {
