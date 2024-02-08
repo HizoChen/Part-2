@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     {
        
         rigidbody = GetComponent<Rigidbody2D>();  
-       Destroy(gameObject, 5);
+       Destroy(gameObject, 5); //disapper in 5 seconds
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody.MovePosition(transform.position+speed*Time.deltaTime);
-        Destroy(gameObject,2);//disapper in 2 seconds
+      
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
