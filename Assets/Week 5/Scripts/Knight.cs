@@ -22,8 +22,14 @@ public class Knight : MonoBehaviour
         isDead = false;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
-       
+        health = PlayerPrefs.GetFloat("currentHealth", maxHealth);
+        SendMessage("SetHealth", health, SendMessageOptions.DontRequireReceiver);
+        if (health == 0)
+        {
+
+            animator.SetTrigger("Death");
+            isDead = true;
+        }
     }
 
     // Update is called once per frame
@@ -70,6 +76,7 @@ public class Knight : MonoBehaviour
     {
         health -= damage;
         health = Mathf.Clamp(health,0,maxHealth);
+        PlayerPrefs.SetFloat("currentHealth", health);
         if (health == 0)
         {
 
@@ -81,6 +88,7 @@ public class Knight : MonoBehaviour
             animator.SetTrigger("TakeDamage");
             isDead= false;
         }
-        
+       
     }
+ 
 }
