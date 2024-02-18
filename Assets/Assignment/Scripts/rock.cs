@@ -20,7 +20,7 @@ public class rock : MonoBehaviour
         indropping = true;
         rigidbody = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 5);
-        transform.Translate(transform.position+ new Vector3(Random.Range(-13f, 13f), 5,0));
+        transform.Translate(transform.position+ new Vector3(Random.Range(-8f, 8f), 5,0));
         Debug.Log(transform.position);
     }
     private void FixedUpdate()
