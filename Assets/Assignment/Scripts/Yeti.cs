@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Yeti : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Yeti : MonoBehaviour
     public float maxHealth = 5;
     public HealthBar healthBar;
     bool isDead;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,4 +54,31 @@ public class Yeti : MonoBehaviour
         }
         
     }
+    public void TakeDamage(float damage)
+    {
+        
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        if (health == 0)
+        {
+
+            animator.SetTrigger("Die");
+            isDead = true;
+            Invoke("LoadNext",1);
+
+        }
+        else
+        {
+            animator.SetTrigger("Hurt");
+            isDead = false;
+        }
+
+    }
+    public void LoadNext()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = 5;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
 }

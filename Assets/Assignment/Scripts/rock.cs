@@ -13,6 +13,7 @@ public class rock : MonoBehaviour
     Vector3 speed = new Vector3(0, -5, 0);
     float droppingTimer;
     public bool indropping;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,6 @@ public class rock : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 5);
         transform.Translate(transform.position+ new Vector3(Random.Range(-8f, 8f), 5,0));
-        Debug.Log(transform.position);
     }
     private void FixedUpdate()
     {
@@ -43,6 +43,7 @@ public class rock : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        collision.gameObject.SendMessage("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
     }
 }
