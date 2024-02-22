@@ -10,13 +10,15 @@ public class selection : MonoBehaviour
     public Color oldcolor;
     public Color newcolor;
     SpriteRenderer spriteRenderer;
+    Rigidbody2D rb;
+    public float speed = 900;
     // Start is called before the first frame update
     void Start()
     {
         
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Selected(false);
-                      
+        rb = GetComponent<Rigidbody2D>();
+        Selected(false);             
     }
     void Update()
     {
@@ -38,5 +40,9 @@ public class selection : MonoBehaviour
             spriteRenderer.color = oldcolor;
         }
 
+    }
+    public void Movement(Vector2 direction) 
+    {
+        rb.AddForce(direction*speed);
     }
 }
