@@ -16,6 +16,7 @@ public class selection : MonoBehaviour
         
         spriteRenderer = GetComponent<SpriteRenderer>();
         Selected(false);
+                      
     }
     void Update()
     {
@@ -23,7 +24,8 @@ public class selection : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Selected(true);
+        Controller.SetselectedPlayer(this);
+
     }
     public void Selected(bool isSelected)
     {
